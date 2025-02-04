@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace EntityFrameworkQueries.Models;
 
+[DebuggerDisplay("Name: {VendorName,nq} - {VendorState,nq}")] // 얘는 디버거를 보여주는 앤데 괄호 안에는 디버거가 어떻게 보여지는지 내가 선택
 public partial class Vendor
 {
     public int VendorId { get; set; }
