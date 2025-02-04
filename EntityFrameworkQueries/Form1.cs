@@ -24,9 +24,24 @@ namespace EntityFrameworkQueries
             // LINQ Query Syntax
             // SQL 에서 하던대로 하는거고 위에는 C#스타일로 하는거네
             List<Vendor> vendorList2 = (from v in dbContext.Vendors
-                                        select v).ToList ();
+                                        select v).ToList();
 
 
+        }
+
+        private void btnAllCaliVendors_Click(object sender, EventArgs e)
+        {
+            using ApContext dbContext = new();
+
+            List<Vendor> VendorList = dbContext.Vendors
+                                        .Where(v => v.VendorState == "CA")
+                                        .OrderBy(v => v.VendorName)
+                                        .ToList();
+
+            List<Vendor> VendorList2 = (from v in dbContext.Vendors
+                                        where v.VendorState == "CA"
+                                        orderby v.VendorName
+                                        select v).ToList();
         }
     }
 }

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             btnSelectAllVendors = new Button();
-            button2 = new Button();
+            btnAllCaliVendors = new Button();
             button3 = new Button();
             SuspendLayout();
             // 
             // btnSelectAllVendors
             // 
-            btnSelectAllVendors.Location = new Point(64, 29);
+            btnSelectAllVendors.Location = new Point(94, 12);
             btnSelectAllVendors.Name = "btnSelectAllVendors";
             btnSelectAllVendors.Size = new Size(146, 23);
             btnSelectAllVendors.TabIndex = 0;
@@ -43,18 +43,19 @@
             btnSelectAllVendors.UseVisualStyleBackColor = true;
             btnSelectAllVendors.Click += btnSelectAllVendors_Click;
             // 
-            // button2
+            // btnAllCaliVendors
             // 
-            button2.Location = new Point(85, 84);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btnAllCaliVendors.Location = new Point(12, 41);
+            btnAllCaliVendors.Name = "btnAllCaliVendors";
+            btnAllCaliVendors.Size = new Size(311, 47);
+            btnAllCaliVendors.TabIndex = 1;
+            btnAllCaliVendors.Text = "SELECT * FROM Vendors Where VendorState = 'CA' \r\nORDER BY VendorName ASC";
+            btnAllCaliVendors.UseVisualStyleBackColor = true;
+            btnAllCaliVendors.Click += btnAllCaliVendors_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(84, 151);
+            button3.Location = new Point(115, 106);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 2;
@@ -65,9 +66,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(368, 161);
             Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(btnAllCaliVendors);
             Controls.Add(btnSelectAllVendors);
             Name = "Form1";
             Text = "Form1";
@@ -77,7 +78,7 @@
         #endregion
 
         private Button btnSelectAllVendors;
-        private Button button2;
+        private Button btnAllCaliVendors;
         private Button button3;
     }
 }
