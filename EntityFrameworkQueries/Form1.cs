@@ -1,5 +1,6 @@
 using EntityFrameworkQueries.Data;
 using EntityFrameworkQueries.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 
 namespace EntityFrameworkQueries
@@ -20,7 +21,7 @@ namespace EntityFrameworkQueries
             using ApContext dbContext = new ApContext();
 
             /* LINQ Method Syntax
-             * (Language Integrated Query)*/ 
+             * (Language Integrated Query)*/
             List<Vendor> vendorList = dbContext.Vendors.ToList();
 
             /* LINQ Query Syntax
@@ -89,16 +90,47 @@ namespace EntityFrameworkQueries
 
 
             //Query a single Vendor
-            Vendor ? singleVendor = (from v in dbContect.Vendors
-                                     where v.VendorName == "IBM"
-                                     select v).SingleOrDefault(); // 하나가 아닐수도 있으니까 이렇게 한다
+            Vendor? singleVendor = (from v in dbContect.Vendors
+                                    where v.VendorName == "IBM"
+                                    select v).SingleOrDefault(); // 하나가 아닐수도 있으니까 이렇게 한다
 
-            if (singleVendor != null) 
-            { 
+            if (singleVendor != null)
+            {
                 // do something
-            }            
+            }
+        }
+
+        private void btnVendorsandInvoices_Click(object sender, EventArgs e)
+        {
+            ApContext dbContext = new();
+
+            // Vendor LEFT JOIN Invoices
+            List<Vendor> allVendors = dbContext.Vendors.Include(v => v.Invoices).ToList();
+
+            // Unfinished code: This pulls a Vendor object for each individual invoice,
+            // vendors are also pulled back if they have no invoices
+
+            //List<Vendor> allVendors = (from v in dbContext.Vendors
+            //                            join inv in dbContext.Invoices
+            //                            on v.VendorId equals inv.VendorId into grouping
+            //                            from inv in grouping.DefaultIfEmpty()
+            //                           select v).ToList();
+
+            StringBuilder results = new();
+
+            foreach (Vendor v in allVendors)
+            {
+                results.Append(v.VendorName);
+                foreach (Invoice inv in v.Invoices) 
+                {
+                    results.Append(",");
+                    results.Append(inv.InvoiceNumber);
+                }
+                results.AppendLine();
+            }      
+            MessageBox.Show(results.ToString());
         }
     }
     /* 여기에 class 를 선언하여 Anonymous Type(익명 형식)을 쓰지 않고
-     * explicit type 을 명시해 줄수도 있다.*/
+     * Explicit type 을 명시해 줄수도 있다.*/
 }
