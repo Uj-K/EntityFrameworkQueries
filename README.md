@@ -3,7 +3,7 @@
 ## Getting Started
 - Visual Studio
 - .NET
-- AP database installed
+- [AP database](create_ap.sql) installed
 
 You may need to change the DB connection string located in the APContext class
 By default it points to msssqllocaldb.
