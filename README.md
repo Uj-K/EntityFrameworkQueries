@@ -1,4 +1,4 @@
-#EntityFrameworkQueries
+# EntityFrameworkQueries
 
 ## Getting Started
 - Visual Studio
