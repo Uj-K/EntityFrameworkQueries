@@ -1,3 +1,4 @@
+using EntityFrameworkQueries.Data;
 using EntityFrameworkQueries.Models;
 using System.Text;
 
@@ -53,12 +54,12 @@ namespace EntityFrameworkQueries
              * 특정 상황에서 간편하게 사용할 수 있지만, 일반적으로는 이름이 있는 명시적 클래스를 사용하는 것이 좋음
              * 왜나면 코드의 가독성 및 유지보수성을 높일 수 있으니까*/
             var results = (from v in dbContext.Vendors
-                          select new 
-                          {
-                              v.VendorName, 
-                              v.VendorState, 
-                              v.VendorCity
-                          }).ToList();
+                           select new
+                           {
+                               v.VendorName,
+                               v.VendorState,
+                               v.VendorCity
+                           }).ToList();
             /*StringBuilder 클래스는 문자열을 효율적으로 조작할 수 있도록 도와주는 클래스입니다. 
              * 기본적으로 불변(immutable)인 String 클래스와 달리, 
              * StringBuilder는 가변(mutable) 문자열을 사용하여 
@@ -70,7 +71,32 @@ namespace EntityFrameworkQueries
                 displayString.AppendLine($"{vendor.VendorName} is in {vendor.VendorCity}");
             }
 
-            MessageBox.Show( displayString.ToString() );
+            MessageBox.Show(displayString.ToString());
+        }
+
+        private void btnMiscQueries_Click(object sender, EventArgs e)
+        {
+            ApContext dbContect = new();
+
+            // Check if any WA vendor exists
+            bool doesExist = (from v in dbContect.Vendors
+                              where v.VendorState == "WA"
+                              select v).Any();
+
+            //Get number of Invoices
+            int invoiceCount = (from invoice in dbContect.Invoices
+                                select invoice).Count();
+
+
+            //Query a single Vendor
+            Vendor ? singleVendor = (from v in dbContect.Vendors
+                                     where v.VendorName == "IBM"
+                                     select v).SingleOrDefault(); // 하나가 아닐수도 있으니까 이렇게 한다
+
+            if (singleVendor != null) 
+            { 
+                // do something
+            }            
         }
     }
     /* 여기에 class 를 선언하여 Anonymous Type(익명 형식)을 쓰지 않고
