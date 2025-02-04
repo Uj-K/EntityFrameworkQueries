@@ -1,4 +1,5 @@
 using EntityFrameworkQueries.Models;
+using System.Text;
 
 namespace EntityFrameworkQueries
 {
@@ -43,5 +44,35 @@ namespace EntityFrameworkQueries
                                         orderby v.VendorName
                                         select v).ToList();
         }
+
+        private void btnSelectSpecificColumns_Click(object sender, EventArgs e)
+        {
+            ApContext dbContext = new();
+            // Anonymous type
+            /*특정 형식에 대한 이름을 정의하지 않고, 프로퍼티와 값을 가질 수 있는 객체
+             * 특정 상황에서 간편하게 사용할 수 있지만, 일반적으로는 이름이 있는 명시적 클래스를 사용하는 것이 좋음
+             * 왜나면 코드의 가독성 및 유지보수성을 높일 수 있으니까*/
+            var results = (from v in dbContext.Vendors
+                          select new 
+                          {
+                              v.VendorName, 
+                              v.VendorState, 
+                              v.VendorCity
+                          }).ToList();
+            /*StringBuilder 클래스는 문자열을 효율적으로 조작할 수 있도록 도와주는 클래스입니다. 
+             * 기본적으로 불변(immutable)인 String 클래스와 달리, 
+             * StringBuilder는 가변(mutable) 문자열을 사용하여 
+             * 여러 번의 문자열 조작 작업을 더 효율적으로 처리할 수 있습니다. 
+             * 주로 문자열을 자주 추가, 수정, 삭제해야 하는 경우에 유용합니다.*/
+            StringBuilder displayString = new();
+            foreach (var vendor in results)
+            {
+                displayString.AppendLine($"{vendor.VendorName} is in {vendor.VendorCity}");
+            }
+
+            MessageBox.Show( displayString.ToString() );
+        }
     }
+    /* 여기에 class 를 선언하여 Anonymous Type(익명 형식)을 쓰지 않고
+     * explicit type 을 명시해 줄수도 있다.*/
 }

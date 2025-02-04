@@ -30,12 +30,12 @@
         {
             btnSelectAllVendors = new Button();
             btnAllCaliVendors = new Button();
-            button3 = new Button();
+            btnSelectSpecificColumns = new Button();
             SuspendLayout();
             // 
             // btnSelectAllVendors
             // 
-            btnSelectAllVendors.Location = new Point(94, 12);
+            btnSelectAllVendors.Location = new Point(115, 30);
             btnSelectAllVendors.Name = "btnSelectAllVendors";
             btnSelectAllVendors.Size = new Size(146, 23);
             btnSelectAllVendors.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // btnAllCaliVendors
             // 
-            btnAllCaliVendors.Location = new Point(12, 41);
+            btnAllCaliVendors.Location = new Point(27, 71);
             btnAllCaliVendors.Name = "btnAllCaliVendors";
             btnAllCaliVendors.Size = new Size(311, 47);
             btnAllCaliVendors.TabIndex = 1;
@@ -53,21 +53,22 @@
             btnAllCaliVendors.UseVisualStyleBackColor = true;
             btnAllCaliVendors.Click += btnAllCaliVendors_Click;
             // 
-            // button3
+            // btnSelectSpecificColumns
             // 
-            button3.Location = new Point(115, 106);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            btnSelectSpecificColumns.Location = new Point(44, 134);
+            btnSelectSpecificColumns.Name = "btnSelectSpecificColumns";
+            btnSelectSpecificColumns.Size = new Size(279, 45);
+            btnSelectSpecificColumns.TabIndex = 2;
+            btnSelectSpecificColumns.Text = "SELECT VendorName, VendorCity, VendorState\r\nFROM Vendors";
+            btnSelectSpecificColumns.UseVisualStyleBackColor = true;
+            btnSelectSpecificColumns.Click += btnSelectSpecificColumns_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(368, 161);
-            Controls.Add(button3);
+            ClientSize = new Size(369, 214);
+            Controls.Add(btnSelectSpecificColumns);
             Controls.Add(btnAllCaliVendors);
             Controls.Add(btnSelectAllVendors);
             Name = "Form1";
@@ -79,6 +80,6 @@
 
         private Button btnSelectAllVendors;
         private Button btnAllCaliVendors;
-        private Button button3;
+        private Button btnSelectSpecificColumns;
     }
 }
