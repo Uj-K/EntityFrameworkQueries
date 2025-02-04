@@ -19,12 +19,12 @@ namespace EntityFrameworkQueries
              * 선생님은 clean up 이라고 표현하심*/
             using ApContext dbContext = new ApContext();
 
-            // LINQ Method Syntax
-            // (Language Integrated Query) 
+            /* LINQ Method Syntax
+             * (Language Integrated Query)*/ 
             List<Vendor> vendorList = dbContext.Vendors.ToList();
 
-            // LINQ Query Syntax
-            // SQL 에서 하던대로 하는거고 위에는 C#스타일로 하는거네
+            /* LINQ Query Syntax
+             * SQL 에서 하던대로 하는거고 위에는 C#스타일로 하는거네*/
             List<Vendor> vendorList2 = (from v in dbContext.Vendors
                                         select v).ToList();
 
