@@ -11,4 +11,5 @@ If your AP script is not installed on mssqllocaldb, update the string
 ```csharp
 optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AP");
 ```
-
+### Useful Website
+[MS Docs - Scaffolding (Reverse Engineering)](https://learn.microsoft.com/en-us/ef/core/managing-schemas/scaffolding/?tabs=vs)
